@@ -1,0 +1,49 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int n,tq;
+    cout<<"Enter the number of process"<<endl;
+    cin>>n;
+    int process[n];
+    for(int i=0;i<n;i++)
+    {
+        cout<<"Enter the  Burst time of process"<<i+1<<endl;
+        cin>>process[i];
+    }
+    
+    cout<<"Enter the time quantum"<<endl;
+    cin>>tq;
+    int totaltime;
+    //int readyque[n];
+    for(int i=0;i<n;i++)
+    {
+        totaltime+=process[i];
+    }
+    
+    while(totaltime!=0)
+    {
+        for(int i=0;i<n;i++)
+        {
+            if(process[i]>tq)
+            {
+                process[i]=process[i]-tq;
+                totaltime=totaltime-tq;
+                
+            }
+            else if(process[i]<=tq && process[i]!=0)
+            {
+                process[i]=0;
+                cout<<"Process"<<i+1<<"finished"<<endl;
+                totaltime=totaltime-process[i] ;
+                
+           }
+        }
+    }
+    
+
+
+    return 0;
+}
